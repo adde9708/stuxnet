@@ -24,17 +24,20 @@
 ** value (0 and 1) but actually it is not used, maybe it was used in    **
 ** the past.                                                            **
 *************************************************************************/
-void CheckSystemVersion(BOOL bUknownBool)
-{
-	struct _OSVERSIONINFOW sVersionInformation; // [sp+0h] [bp-114h]@1
+void CheckSystemVersion(BOOL bUknownBool) {
+  struct _OSVERSIONINFOW sVersionInformation; // [sp+0h] [bp-114h]@1
 
-	sVersionInformation.dwOSVersionInfoSize = sizeof(struct _OSVERSIONINFOW);
-	
-	if(!GetVersionExW(&sVersionInformation)) return;
-	
-	if(sVersionInformation.dwPlatformId != VER_PLATFORM_WIN32_NT) return;
+  sVersionInformation.dwOSVersionInfoSize = sizeof(struct _OSVERSIONINFOW);
+
+  if (!GetVersionExW(&sVersionInformation))
+    return;
+
+  if (sVersionInformation.dwPlatformId != VER_PLATFORM_WIN32_NT)
+    return;
   // Win2k -> Win8
-	if(sVersionInformation.dwMajorVersion < 5 && sVersionInformation.dwMajorVersion > 6) return;
-	
-	LoadSTUBSection();
+  if (sVersionInformation.dwMajorVersion < 5 &&
+      sVersionInformation.dwMajorVersion > 6)
+    return;
+
+  LoadSTUBSection();
 }
