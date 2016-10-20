@@ -23,10 +23,8 @@
 
 // This replaces the builtin MSDOS stub that usually checks for compatability
 // ( the infamous "This program cannot be run in DOS mode")
-void __declspec(naked) __ASM_BLOCK0_0(void)
-{
-	__asm
-	{
+void __declspec(naked) __ASM_BLOCK0_0(void) {
+  __asm {
 		cmp     edx, [eax]
 		dec     ecx
 		stosd
@@ -52,24 +50,22 @@ void __declspec(naked) __ASM_BLOCK0_0(void)
 	__ASM_REF_0:
 		push    edx
 		call    __ASM_BLOCK0_2
-	}
+  }
 }
 
-void __declspec(naked) __ASM_BLOCK0_1(void)
-{
-	__asm
-	{
+void __declspec(naked) __ASM_BLOCK0_1(void) {
+  __asm
+  {
 		xchg    ebx, [ebx+0]
 		add     [eax], dl
-	}
+  }
 }
 
 // Jump to address at top of stack
-void __declspec(naked) __ASM_BLOCK0_2(void)
-{
-	__asm
-	{
+void __declspec(naked) __ASM_BLOCK0_2(void) {
+  __asm
+  {
 		pop     edx
 		jmp     dword ptr [edx]
-	}
+  }
 }
