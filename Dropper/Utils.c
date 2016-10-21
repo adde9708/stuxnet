@@ -87,9 +87,8 @@ INT32 GetRandomModuleName(GENERAL_INFO_BLOCK *sInfoBlock,
       wsprintfW(sInfoBlock->RandomLibraryName, __KERNEL32_DLL_ASLR_08x,
                 dwRandom++);
     while (GetModuleHandleW(sInfoBlock->RandomLibraryName));
-    // Defeat ASLR by checking every single address.
   }
-
+  // Defeat ASLR by checking every single address.
   sInfoBlock->OriginalAddress = XADDR_KEY ^ (UINT32)sInfoBlock;
   sInfoBlock->UnknownZero0 = 0;
   sInfoBlock->AlignAddressesFunction = (DWORD)BLOCK4_AlignAddresses;
