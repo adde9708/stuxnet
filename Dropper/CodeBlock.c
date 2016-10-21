@@ -84,7 +84,7 @@ INT32 BLOCK4_InjectAndExecuteVirus(
 }
 
 // 99% (C) CODE MATCH
-// This gets ran on virus startup I think
+// This gets run on virus startup I think
 INT32 BLOCK4_ExecuteLibrary(PASM_CODE_BLOCKS_HEADER sASMCodeBlocksHeader) {
   FARPROC pLibraryExecEntry;                       // [sp+0h] [bp-Ch]@1
   PVIRUS_MODULE_BLOCKS_HEADER pVirusModuleSection; // [sp+4h] [bp-8h]@1
