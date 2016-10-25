@@ -18,12 +18,12 @@
 #ifndef __STUB_HANDLER_H__
 #define __STUB_HANDLER_H__
 
+#include "MemorySections.h"
 #include "data.h"
 #include "define.h"
-#include "MemorySections.h"
 
 #define STUB_INTEGRITY_MARK 0xAE39120D
-#define STUB_HEADER_LEN     556
+#define STUB_HEADER_LEN 556
 
 void LoadSTUBSection(void);
 void DecryptSTUBSection(char *pSectionSTUB, UINT32 pSectionVirtualSize);
