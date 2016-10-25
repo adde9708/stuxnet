@@ -18,11 +18,11 @@
 #ifndef __ENCODING_H__
 #define __ENCODING_H__
 
-#include "define.h"
-#include "data.h"
+#include "CodeBlock.h"
 #include "EncodingAlgorithms.h"
 #include "EncodingUtils.h"
-#include "CodeBlock.h"
+#include "data.h"
+#include "define.h"
 
 void UnusedFunction();
 BOOL DecodeEncryptedModuleNames();

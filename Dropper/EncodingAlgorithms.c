@@ -16,56 +16,52 @@
 
 #include "EncodingAlgorithms.h"
 
-void DecodeFunctionNameA(const char *pEncodedFunctionName, char *pDecodedFunctionName)
-{
-	if(!pEncodedFunctionName)
-	{
-		*pDecodedFunctionName = 0;
-		return;
-	}
-	
-	while( *pEncodedFunctionName != 0x12 )
-	{
-		*pDecodedFunctionName = *pEncodedFunctionName ^ 0x12;
+void DecodeFunctionNameA(const char *pEncodedFunctionName,
+                         char *pDecodedFunctionName) {
+  if (!pEncodedFunctionName) {
+    *pDecodedFunctionName = 0;
+    return;
+  }
 
-		pEncodedFunctionName += 2;
-		pDecodedFunctionName++;
-	}
+  while (*pEncodedFunctionName != 0x12) {
+    *pDecodedFunctionName = *pEncodedFunctionName ^ 0x12;
+
+    pEncodedFunctionName += 2;
+    pDecodedFunctionName++;
+  }
 }
 
-void DecodeModuleNameW(const WCHAR *pEncodedModuleName, WCHAR *pDecodedModuleName)
-{
-	if(!pEncodedModuleName)
-	{
-		*pDecodedModuleName = 0;
-		return;
-	}
-	
-	while( *pEncodedModuleName != 0xAE12 )
-	{
-		*pDecodedModuleName = *pEncodedModuleName ^ 0xAE12;
+void DecodeModuleNameW(const WCHAR *pEncodedModuleName,
+                       WCHAR *pDecodedModuleName) {
+  if (!pEncodedModuleName) {
+    *pDecodedModuleName = 0;
+    return;
+  }
 
-		pEncodedModuleName++; pDecodedModuleName++;
-	}
+  while (*pEncodedModuleName != 0xAE12) {
+    *pDecodedModuleName = *pEncodedModuleName ^ 0xAE12;
+
+    pEncodedModuleName++;
+    pDecodedModuleName++;
+  }
 }
 
 // 100% (C) CODE MATCH
-HMODULE GetModuleNTDLL(void)
-{
-	WCHAR ModuleName[100]; // [sp+0h] [bp-C8h]@1
+HMODULE GetModuleNTDLL(void) {
+  WCHAR ModuleName[100]; // [sp+0h] [bp-C8h]@1
 
-	DecodeModuleNameW(ENCODED_NTDLL_DLL, ModuleName);
-	return GetModuleHandleW(ModuleName);
+  DecodeModuleNameW(ENCODED_NTDLL_DLL, ModuleName);
+  return GetModuleHandleW(ModuleName);
 }
 
 // 100% (C) CODE MATCH
-FARPROC GetFunctionFromModule(const WCHAR *pEncodedModuleName, const char *pEncodedFunctionName)
-{
-	WCHAR pDecodedModuleName[100]; // [sp+0h] [bp-12Ch]@1
-	CHAR ProcName[100]; // [sp+C8h] [bp-64h]@1
+FARPROC GetFunctionFromModule(const WCHAR *pEncodedModuleName,
+                              const char *pEncodedFunctionName) {
+  WCHAR pDecodedModuleName[100]; // [sp+0h] [bp-12Ch]@1
+  CHAR ProcName[100];            // [sp+C8h] [bp-64h]@1
 
-	DecodeModuleNameW(pEncodedModuleName, pDecodedModuleName);
-	DecodeFunctionNameA(pEncodedFunctionName, ProcName);
-	
-	return GetProcAddress(GetModuleHandleW(pDecodedModuleName), ProcName);
+  DecodeModuleNameW(pEncodedModuleName, pDecodedModuleName);
+  DecodeFunctionNameA(pEncodedFunctionName, ProcName);
+
+  return GetProcAddress(GetModuleHandleW(pDecodedModuleName), ProcName);
 }

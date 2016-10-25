@@ -20,10 +20,10 @@
 // 100% (ASM) CODE MATCH
 
 // Pretty straightforward, self-defined memcpy
-__declspec(naked) void __memcpy(void *pDestination, const void *pSource, size_t iSize)
-{
+__declspec(naked) void __memcpy(void *pDestination, const void *pSource,
+                                size_t iSize) {
 
-	__asm {
+  __asm {
 		push    ebp
 		mov     ebp, esp
 		push    esi
@@ -36,17 +36,15 @@ __declspec(naked) void __memcpy(void *pDestination, const void *pSource, size_t 
 		pop     esi
 		pop     ebp
 		retn
-	}
+  }
 }
 
 // 100% (C) CODE MATCH
-FARPROC GetFunctionFromKERNEL32(const char *pEncodedFunctionName)
-{
-	return GetFunctionFromModule(ENCODED_KERNEL32_DLL, pEncodedFunctionName);
+FARPROC GetFunctionFromKERNEL32(const char *pEncodedFunctionName) {
+  return GetFunctionFromModule(ENCODED_KERNEL32_DLL, pEncodedFunctionName);
 }
 
 // 100% (C) CODE MATCH
-FARPROC GetFunctionFromNTDLL(const char *pEncodedFunctionName)
-{
-	return GetFunctionFromModule(ENCODED_NTDLL_DLL, pEncodedFunctionName);
+FARPROC GetFunctionFromNTDLL(const char *pEncodedFunctionName) {
+  return GetFunctionFromModule(ENCODED_NTDLL_DLL, pEncodedFunctionName);
 }

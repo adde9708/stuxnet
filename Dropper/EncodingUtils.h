@@ -18,8 +18,8 @@
 #ifndef __ENCODING_UTILS_H__
 #define __ENCODING_UTILS_H__
 
-#include "data.h"
 #include "EncodingAlgorithms.h"
+#include "data.h"
 
 void __memcpy(void *pDestination, const void *pSource, size_t iSize);
 

@@ -17,14 +17,17 @@
 #ifndef __ENCODING_ALGORITHMS_H__
 #define __ENCODING_ALGORITHMS_H__
 
-#include "define.h"
 #include "data.h"
+#include "define.h"
 
-void DecodeModuleNameA(const char *pEncodedFunctionName, char *pDecodedFunctionName);
-void DecodeModuleNameW(const WCHAR *pEncodedModuleName, WCHAR *pDecodedModuleName);
+void DecodeModuleNameA(const char *pEncodedFunctionName,
+                       char *pDecodedFunctionName);
+void DecodeModuleNameW(const WCHAR *pEncodedModuleName,
+                       WCHAR *pDecodedModuleName);
 
 HMODULE GetModuleNTDLL(void);
 
-FARPROC GetFunctionFromModule(const WCHAR *pEncodedModuleName, const char *pEncodedFunctionName);
+FARPROC GetFunctionFromModule(const WCHAR *pEncodedModuleName,
+                              const char *pEncodedFunctionName);
 
 #endif

@@ -15,66 +15,61 @@
 ******************************************************************************************/
 // MODIFIED BY mic.ric.tor
 
-#include "data.h"
 #include "OS.h"
+#include "data.h"
 #include "stdafx.h"
 
 HINSTANCE g_hInstDLL = NULL;
 
 // 100% (C) CODE MATCH
-BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
-{
-	if(fdwReason && fdwReason == 1)
-        g_hInstDLL = hinstDLL;
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
+  if (fdwReason && fdwReason == 1)
+    g_hInstDLL = hinstDLL;
 
-	return TRUE;
+  return TRUE;
 }
 
 // 100% (C) CODE MATCH
-BOOL __stdcall DllUnregisterServerEx(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
-{
-	if(fdwReason && fdwReason == 1)
-	{
-		g_hInstDLL = hinstDLL;
-		CheckSystemVersion(TRUE);
-	}
+BOOL __stdcall DllUnregisterServerEx(HINSTANCE hinstDLL, DWORD fdwReason,
+                                     LPVOID lpReserved) {
+  if (fdwReason && fdwReason == 1) {
+    g_hInstDLL = hinstDLL;
+    CheckSystemVersion(TRUE);
+  }
 
-	return 0;
+  return 0;
 }
 
 // 100% (C) CODE MATCH
-HRESULT __stdcall DllCanUnloadNow(void)
-{
-	g_hInstDLL = GetModuleHandleW(0);
-	CheckSystemVersion(TRUE);
-	ExitProcess(0);
+HRESULT __stdcall DllCanUnloadNow(void) {
+  g_hInstDLL = GetModuleHandleW(0);
+  CheckSystemVersion(TRUE);
+  ExitProcess(0);
 }
 
 // 100% (C) CODE MATCH
-HRESULT __stdcall DllGetClassObject(const IID *const rclsid, const IID *const riid, LPVOID *ppv)
-{
-	CheckSystemVersion(TRUE);
+HRESULT __stdcall DllGetClassObject(const IID *const rclsid,
+                                    const IID *const riid, LPVOID *ppv) {
+  CheckSystemVersion(TRUE);
 }
 
 // 100% (C) CODE MATCH
-HRESULT __stdcall DllRegisterServerEx(void)
-{
-	CheckSystemVersion(TRUE);
-	return 1;
+HRESULT __stdcall DllRegisterServerEx(void) {
+  CheckSystemVersion(TRUE);
+  return 1;
 }
 
 // 100% (C) CODE MATCH
-LONG APIENTRY CPlApplet(HWND hwndCPl, UINT uMsg, LPARAM lParam1, LPARAM lParam2)
-{
-	if(*(DWORD *)(hwndCPl + 2))
-		DeleteFileA(*(LPCSTR *)(hwndCPl + 2));
+LONG APIENTRY CPlApplet(HWND hwndCPl, UINT uMsg, LPARAM lParam1,
+                        LPARAM lParam2) {
+  if (*(DWORD *)(hwndCPl + 2))
+    DeleteFileA(*(LPCSTR *)(hwndCPl + 2));
 
-	CheckSystemVersion(TRUE);
-	return 1;
+  CheckSystemVersion(TRUE);
+  return 1;
 }
 
 // 100% (C) CODE MATCH
-STDAPI APIENTRY DllGetClassObjectEx(int a1, int a2, int a3, int a4)
-{
-	CheckSystemVersion(FALSE);
+STDAPI APIENTRY DllGetClassObjectEx(int a1, int a2, int a3, int a4) {
+  CheckSystemVersion(FALSE);
 }
