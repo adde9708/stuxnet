@@ -18,24 +18,32 @@
 #ifndef __MEMORY_SECTIONS_H__
 #define __MEMORY_SECTIONS_H__
 
-#include "define.h"
-#include "Encoding.h"
-#include "Utils.h"
 #include "AssemblyBlock0.h"
 #include "AssemblyBlock1.h"
 #include "AssemblyBlock2.h"
 #include "CodeBlock.h"
+#include "Encoding.h"
+#include "Utils.h"
+#include "define.h"
 
-INT32 LoadVirusModuleSection(HANDLE hHandle, PGENERAL_INFO_BLOCK sInfoBlock, PVOID pVirusModule, INT32 pVirusModuleSize, INT32 iExecEntryNumber, PVOID pUnknownSegment, UINT32 pUnknownSegmentSize, PVOID *pOutSection);
-INT32 LoadAndInjectVirus(PASM_CODE_BLOCKS_HEADER sASMCodeBlocksHeader, PVIRUS_MODULE_BLOCKS_HEADER sVirusModuleBlocksHeader, PGENERAL_INFO_BLOCK sInfoBlock);
+INT32 LoadVirusModuleSection(HANDLE hHandle, PGENERAL_INFO_BLOCK sInfoBlock,
+                             PVOID pVirusModule, INT32 pVirusModuleSize,
+                             INT32 iExecEntryNumber, PVOID pUnknownSegment,
+                             UINT32 pUnknownSegmentSize, PVOID *pOutSection);
+INT32 LoadAndInjectVirus(PASM_CODE_BLOCKS_HEADER sASMCodeBlocksHeader,
+                         PVIRUS_MODULE_BLOCKS_HEADER sVirusModuleBlocksHeader,
+                         PGENERAL_INFO_BLOCK sInfoBlock);
 
 UINT32 GetCodeBlockSize(void);
 UINT32 GetCodeBlock(void);
 UINT32 GetRelativeExecuteLibraryPointer(void);
 UINT32 GetRelativeAlignAddressesPointer(void);
 
-INT32 LoadCodeSection(HANDLE hHandle, PVOID pVirusModuleSection, PVOID *pCodeBlockPointer, PVOID *pAssemblyCodeBlocksSection);
+INT32 LoadCodeSection(HANDLE hHandle, PVOID pVirusModuleSection,
+                      PVOID *pCodeBlockPointer,
+                      PVOID *pAssemblyCodeBlocksSection);
 
-INT32 Setup(LPCWSTR szDebugModuleName, PVOID pVirusModule, UINT32 iVirusModuleSize, HMODULE *hVirusModule);
+INT32 Setup(LPCWSTR szDebugModuleName, PVOID pVirusModule,
+            UINT32 iVirusModuleSize, HMODULE *hVirusModule);
 
 #endif
